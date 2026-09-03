@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Recommender</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <!-- Flash Messages Container -->
+    <div class="flash-messages container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="/">Food</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contacts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-outline-light ms-3 px-4" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-primary ms-2" href="/signup">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container"
+        style="flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; flex-direction: column;">
+        <div class="glass-box mb-5">
+            <p style="text-align: justify; line-height: 1.8; font-size: 1.05rem;">
+                Welcome to Food Recommender, the ultimate intelligent culinary companion designed to revolutionize the
+                way you discover and experience meals! In today’s fast-paced world, choosing what to eat can often feel
+                overwhelming, but our platform transforms that daily dilemma into an exciting, personalized journey. We
+                harness the power of advanced AI-driven Sentiment Analysis and sophisticated TF-IDF NLP (Natural
+                Language Processing) logic to effortlessly bridge the gap between human emotion and culinary
+                satisfaction.
+            </p>
+            <p style="text-align: justify; line-height: 1.8; font-size: 1.05rem;">
+                Our ecosystem features a suite of highly specialized machine learning models built explicitly to cater
+                to your unique needs. Are you feeling down and need some comfort food, or perhaps energized and looking
+                for something vibrant? Our <strong>Mood Recommender</strong> analyzes the nuances of your emotional
+                state to suggest the perfect dishes that align with how you feel. If you find yourself staring at a
+                random assortment of ingredients in your fridge, our powerful <strong>Recipe Recommender</strong>
+                instantly scans thousands of recipes, extracting and matching keywords to provide you with delicious,
+                step-by-step cooking instructions.
+            </p>
+            <p style="text-align: justify; line-height: 1.8; font-size: 1.05rem;">
+                Finally, for a seamlessly interactive experience, meet our <strong>Intelligent Dual-Intent AI
+                    Chatbot</strong>. Designed to act as your personal digital sous-chef, this conversational agent
+                dynamically understands whether you are discussing your feelings or asking for specific ingredient
+                combinations, seamlessly routing your queries to the appropriate engine. Stop worrying about what’s for
+                dinner. Sign up today, log into your personal dashboard, and explore exactly how tailored artificial
+                intelligence can elevate your daily dining experience!
+            </p>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

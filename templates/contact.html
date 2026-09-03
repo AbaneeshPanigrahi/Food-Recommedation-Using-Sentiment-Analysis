@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Food Recommender</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="bg-transparent text-dark">
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="/">Food</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contacts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-outline-light ms-3 px-4" href="/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn-primary ms-2" href="/signup">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-container mt-5 pt-4" style="flex-grow: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; flex-direction: column;">
+        
+        <!-- Flash Messages -->
+        <div class="flash-messages w-100" style="max-width: 600px;">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }} alert-dismissible fade show text-center" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        </div>
+
+        <div id="contacts" class="glass-box text-center" style="max-width: 600px;">
+            <h2 class="mb-3 text-dark">Feedback Form</h2>
+            <p class="text-muted mb-4">Have questions or feedback? Let us know! Your thoughts help us improve.</p>
+            
+            <form action="/feedback" method="post">
+                <div class="form-group mb-4">
+                    <input type="text" class="form-control form-control-custom text-center" name="name"
+                        placeholder="Your Name" required>
+                </div>
+                <div class="form-group mb-4">
+                    <input type="email" class="form-control form-control-custom text-center" name="email"
+                        placeholder="Your Email" required>
+                </div>
+                <div class="form-group mb-4">
+                    <textarea class="form-control form-control-custom text-center" name="message"
+                        placeholder="Enter your message" rows="4" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary btn-lg w-100 shadow-sm mt-2">
+                    Submit Feedback
+                </button>
+            </form>
+        </div>
+        
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Chatbot</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/style.css">
+
+</head>
+
+<body class="bg-transparent text-dark">
+
+    <div class="container mt-5 pt-3 d-flex flex-column align-items-center justify-content-center">
+        <div class="glass-box" style="max-width: 700px;">
+            <h2 class="text-center mb-3 text-dark">Food Chatbot</h2>
+
+            <div class="chat-box" id="chatBox">
+                <div class="bot-msg align-self-start">Hello! Tell me your mood, or ask for a recipe! 🍽️</div>
+            </div>
+
+            <div class="input-group mt-4">
+                <input type="text" id="msg" class="form-control form-control-lg"
+                    style="border-radius: 20px 0 0 20px; background: rgba(255,255,255,0.15); border-color: rgba(0,0,0,0.3); color: #111;"
+                    placeholder="Type your message...">
+                <button class="btn btn-primary px-4 fw-bold" style="border-radius: 0 20px 20px 0;"
+                    onclick="send()">Send</button>
+            </div>
+        </div>
+
+        <!-- Back button BELOW the input section -->
+        <div id="back" class="mt-4">
+            <a href="/home" class="btn btn-outline-light" style="border-radius: 20px;">← Back to Home</a>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("msg").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                send();
+            }
+        });
+
+        function send() {
+            let msg = document.getElementById("msg").value;
+            if (msg === "") return;
+
+            let chat = document.getElementById("chatBox");
+            // Add user message
+            chat.innerHTML += `<div class='user-msg align-self-end'>${msg}</div>`;
+            chat.scrollTop = chat.scrollHeight;
+
+            fetch("/chatbot", {
+                method: "POST",
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: "message=" + encodeURIComponent(msg)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    // Add bot message
+                    chat.innerHTML += `<div class='bot-msg align-self-start'>${data.reply}</div>`;
+                    chat.scrollTop = chat.scrollHeight;
+                });
+
+            document.getElementById("msg").value = "";
+        }
+    </script>
+
+</body>
+
+</html>

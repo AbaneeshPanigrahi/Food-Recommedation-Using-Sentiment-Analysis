@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recommendations</title>
+
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="bg-transparent text-dark">
+
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1>Mood Based Food Recommender</h1>
+        <p class="lead text-dark">
+            Based on your <strong>{{ mood }}</strong> mood, here are some food recommendations:
+        </p>
+    </div>
+
+    <div class="row align-items-stretch mb-5">
+        {% for food in foods %}
+        <div class="col-md-4 mb-4">
+            <div class="card p-4 h-100 shadow text-center">
+                <h3 class="text-dark fw-bold text-capitalize m-0">{{ food }}</h3>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Back Button -->
+    <div class="text-center mt-5 mb-5">
+        <a href="/mood" class="btn btn-outline-light">←Back to Mood Recommender</a>
+        <a href="/home" class="btn btn-primary ms-2">←Go to Home</a>
+    </div>
+
+</div>
+
+</body>
+</html>
