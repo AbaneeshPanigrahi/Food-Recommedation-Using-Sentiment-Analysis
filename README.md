@@ -1,3 +1,3 @@
 # Mood Based Food Recommender
 
-It recommends restaurants in New Delhi based on User Moods and Other Filters.
+It will Analyze as per the user need to eat.
