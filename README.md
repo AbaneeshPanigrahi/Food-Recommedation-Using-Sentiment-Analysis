@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🍽️ Mood-Based Food Recommender
+# 🍽️ Food-Recommedation-Using-Sentiment-Analysis
 
 **Personalized food discovery powered by mood and ingredient-based recommendations.**
 
